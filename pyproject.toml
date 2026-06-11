@@ -1,0 +1,36 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "lumen-xarray"
+version = "0.1.0"
+description = "Native xarray support for Lumen — SQL-queryable N-dimensional scientific data"
+readme = "README.md"
+license = { text = "BSD-3-Clause" }
+requires-python = ">=3.10"
+authors = [{ name = "Aman Kumar", email = "amankumar@example.com" }]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Programming Language :: Python :: 3",
+    "Topic :: Scientific/Engineering",
+]
+dependencies = [
+    "lumen",
+    "xarray",
+    "xarray-sql",
+    "pandas",
+    "numpy",
+    "param",
+]
+
+[project.optional-dependencies]
+netcdf = ["netCDF4", "h5netcdf"]
+zarr = ["zarr", "fsspec"]
+grib = ["cfgrib"]
+all = ["lumen-xarray[netcdf,zarr,grib]"]
+test = ["pytest", "pytest-asyncio"]
+examples = ["panel", "holoviews", "hvplot"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
